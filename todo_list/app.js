@@ -1,21 +1,59 @@
-let task1 = document.getElementById('task1');
-let task1Text = document.getElementById('task1Text');
-let task2 = document.getElementById('task2');
-let task3 = document.getElementById('task3');
+document.querySelector('ul#list').addEventListener('change', check);
+function check(){
+    let label = document.querySelectorAll('label');
+    let check = document.querySelectorAll('input');
 
-
-/*task1.addEventListener('change', checkTask);*/
-function checkTask() {
-    if (task1.checked){
-        let newTask = document.createElement('s'); 
-        newTask.textContent = task1Text.textContent;
-        task1Text.replaceWith(newTask);
-        window.alert('Task 1 is completed');
-    }else{
-        let newTask = null;
-        newTask = document.createElement('p');
-        newTask.textContent = task1Text.textContent;
-        task1Text.replaceWith(newTask);
-        window.alert('Task 1 is not completed');
+    for (let i = 0; i < label.length; i++) {
+        if (check[i].checked) {
+            label[i].style.textDecoration = 'line-through';
+        }
+        else {
+            label[i].style.textDecoration = 'none';
+        }
     }
 }
+
+document.getElementById('add').addEventListener('click', add);
+
+function add(){
+    //let task = document.getElementById('task').value;
+    let task = document.querySelector('#newTask').textContent;
+    
+    
+    let li = document.createElement('li');
+    let checkbox = document.createElement('input');
+    let label = document.createElement('label');
+    let deleteButton = document.createElement('button');
+
+    li.appendChild(checkbox);
+    li.appendChild(label);
+    li.appendChild(deleteButton);
+    list.appendChild(li);
+
+    label.innerText = task;
+    checkbox.value = task;
+    deleteButton.innerText = 'Delete';
+
+    checkbox.type = 'checkbox';
+    checkbox.className = 'task';
+    label.className = 'label';
+    deleteButton.className = 'delete';
+}
+
+
+/*    deleteButton.addEventListener('click', deleteTask);
+    checkbox.addEventListener('change', checkTask);
+
+    function deleteTask() {
+        list.removeChild(li);
+    }
+
+    function checkTask() {
+        if (checkbox.checked) {
+            label.style.textDecoration = 'line-through';
+        } else {
+            label.style.textDecoration = 'none';
+        }
+    }
+
+    */

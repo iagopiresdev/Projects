@@ -16,27 +16,20 @@
             <h1 id="date">January 13th</h1>
         </div>
 
-        <div id="tasks">
-            
-            
-            <div>
-                <input type="checkbox" id="task1" onclick="checkTask()">
-                    <label id="task1Text"">yes yes </label>
-                </input>
-            </div>
-            <div>
-                <input type="checkbox" id="task2">
-                    <label>example2</label>
-                </input>
-            </div>
-            <div>
-                <input type="checkbox" id="task3">
-                    <label>example3</label>
-                </input>
-            </div>
+        <div>
+            <ul id="list">
+                <li>
+                    <input type="checkbox" class="checkboxes"></input>
+                    <label for="task1">Task 1</label>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkboxes"></input>
+                    <label for="task2">Task 2</label>
+                </li>
+            </ul>
         </div>
 
-        <div>
+        <div id="newTask">
             <p>N TASKS</p>
             <input type="text" id="add"></input>
             <button type="submit" id="add">ADD</button>

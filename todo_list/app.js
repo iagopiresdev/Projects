@@ -1,4 +1,5 @@
 document.querySelector('ul#list').addEventListener('change', check);
+
 function check(){
     let label = document.querySelectorAll('label');
     let check = document.querySelectorAll('input');
@@ -13,12 +14,9 @@ function check(){
     }
 }
 
-document.getElementById('add').addEventListener('click', add);
-
 function add(){
-    //let task = document.getElementById('task').value;
-    let task = document.querySelector('#newTask').textContent;
-    
+    let text = document.getElementById('add').value;
+    console.log(text);
     
     let li = document.createElement('li');
     let checkbox = document.createElement('input');
@@ -30,14 +28,16 @@ function add(){
     li.appendChild(deleteButton);
     list.appendChild(li);
 
-    label.innerText = task;
-    checkbox.value = task;
+    label.innerText = text;
+    checkbox.value = undefined;
     deleteButton.innerText = 'Delete';
 
     checkbox.type = 'checkbox';
-    checkbox.className = 'task';
+    checkbox.className = 'checkboxes';
     label.className = 'label';
     deleteButton.className = 'delete';
+
+    document.getElementById('add').value = '';
 }
 
 

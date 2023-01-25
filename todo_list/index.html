@@ -18,21 +18,14 @@
 
         <div>
             <ul id="list">
-                <li>
-                    <input type="checkbox" class="checkboxes"></input>
-                    <label for="task1">Task 1</label>
-                </li>
-                <li>
-                    <input type="checkbox" class="checkboxes"></input>
-                    <label for="task2">Task 2</label>
-                </li>
             </ul>
         </div>
 
         <div id="newTask">
-            <p>N TASKS</p>
+            <span id="counter">You have 0 tasks left.</span>
+            
             <input type="text" id="add"></input>
-            <button type="submit" onclick="add()">ADD</button>
+            <button type="button" onclick="add()">ADD</button>
         </div>
 
     </div>

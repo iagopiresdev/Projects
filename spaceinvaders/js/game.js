@@ -71,7 +71,9 @@
             this.element.style.top = "0px";
             this.element.style.left = `${Math.floor(Math.random() * TAMX)}px`;
             space.element.appendChild(this.element);
-
+        }
+        move(){
+            this.element.style.top = `${parseInt(this.element.style.top) + 1}px`;
         }
     }
 
@@ -81,8 +83,13 @@
             enemies.push(new enemyShip());
         }
         console.log('FPS');
+        
         space.move();
         ship.move();
+        enemies.forEach((enemy) => {
+            enemy.move();
+        }
+        );
     };
 
 init();

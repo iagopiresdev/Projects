@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#menu, #logo, #searchbar{
+    display: flex;
+    min-height: 30%;
+    min-width: 33%;
+    padding: 3%;
+} 
+
+#menu{
+    justify-content: left;
+}
+
+#logo{
+    justify-content: center;
+}
+
+#searchbar{
+    justify-content: right;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    padding: 10px;
+}

@@ -4,28 +4,52 @@
     const TAMY = 800;
 
     const PROB_ENEMY_SHIP = 0.5;
+    let game_running = false;
+    let game_paused = false;
 
-    let space, ship;
+    let space, ship, score;
     let enemies = [];
     let meteors = [];
-    let lifes = [];
+    let lives = [];
 
     function init() {
         space = new Space();
         ship = new Ship();
+        score = new Score();
 
-        lifes.push(new life());
-        lifes.push(new life());
-        lifes.push(new life());
-
-        const interval = window.setInterval(run, 1000 / FPS);
+        let interval = window.setInterval(run, 100000);
     }
+    
     //callback
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            ship.mudaDirecao(-1);
-        } else if (e.key === 'ArrowRight') {
-            ship.mudaDirecao(1);
+        if(game_running === false){
+            if (e.key === ' ') {
+                interval = window.setInterval(run, 1000 / FPS);
+                game_running = true;
+                console.log("play");
+                lives.push(new life());
+                lives.push(new life());
+                lives.push(new life());
+            }
+        }
+        else{
+            if (e.key === 'ArrowLeft') {
+                ship.mudaDirecao(-1);
+            }
+            else if (e.key === 'ArrowRight') {
+                ship.mudaDirecao(1);
+            }
+            else if ((e.key === 'p' || e.key === 'P') && game_paused === false) {
+                console.log("pause");
+                interval = clearInterval(interval);
+                game_paused = true;
+            }
+            else if((e.key === 'p' || e.key === 'P') && game_paused === true){
+                console.log("play");
+                interval = window.setInterval(run, 1000 / FPS);
+                game_paused = false;
+            }
+            
         }
     });
 
@@ -70,24 +94,26 @@
         }
     }
     class life{
-        constructor(){
+        constructor(){            
             this.element = document.createElement("img");
             this.element.className = "life";
             this.element.src = "assets/png/life.png";
-            //this.element.style.position = "flex";
+            this.element.style.top = "0px";
+            //this.element.style.left = `${Math.floor(Math.random() * TAMX)}px`;
+            let lives = document.getElementById("lives");
             
-            //put the element on the top
-            //this.element.style.top = "10px";
-            this.element.style.alignContent = 'flex-end'
-
-            //put the element on the far right and in rows
-            //this.element.style.left = `${parseInt(TAMX - 100)}px`;
-            space.element.appendChild(this.element);
-            this.element.style.left = `1000100px`;
+            console.log(lives.innerText);
+            lives.appendChild(this.element);
         }
-        hit(){
-
-
+    }
+    class Score{
+        constructor(){
+            this.element = document.createElement("p");
+            this.element.innerText = '0000';
+            this.element.className = "score";
+            this.element.style.top = "0px";
+            let lives = document.getElementById("lives");
+            lives.appendChild(this.element);
         }
     }
     class enemyShip{
@@ -124,20 +150,47 @@
 
         if(random_enemy < PROB_ENEMY_SHIP){
             enemies.push(new enemyShip());
-
         }
         if(random_meteor < PROB_ENEMY_SHIP){
             meteors.push(new enemyMeteor());
         }
 
+        enemies.forEach((enemy) => {
+            if (enemy.element.style.left === ship.element.style.left && enemy.element.style.top === ship.element.style.top) {
+                console.log("colisao");
+                lives.pop();
+                if(lives.length === 0){
+                    console.log("game over");
+                    interval = clearInterval(interval);
+                    game_running = false;
+                }
+            }
+        });
+
+        //if enemy ship or meteor trespasses the max height of the screen, remove it from the array and from the DOM
+
+
+
+        meteors.forEach((meteor) => {
+            if (meteor.element.style.left === ship.element.style.left && meteor.element.style.top === ship.element.style.top) {
+                console.log("colisao");
+                lives.pop();
+                if(lives.length === 0){
+                    console.log("game over");
+                    interval = clearInterval(interval);
+                    game_running = false;
+                }
+            }
+        });
+
         
 
-
-
-
-
-
         console.log('FPS');
+
+        //update score through FPS
+        score.element.innerText = parseInt(score.element.innerText) + 1;
+
+
         
         space.move();
         ship.move();

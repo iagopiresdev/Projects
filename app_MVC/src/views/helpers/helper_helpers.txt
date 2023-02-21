@@ -1,0 +1,1 @@
+sao funcoes de javascript que ajudam no handlebars

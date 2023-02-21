@@ -1,0 +1,4 @@
+//contain all of the callbacks of the application
+
+//conjunto de funcoes que vao ser ultilizadas para responder as requesicoes dos usuarios
+//para construir as respostas que serao enviadas aos usuarios

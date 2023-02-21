@@ -1,0 +1,46 @@
+Steps to create a MVC (model, view, controller) application
+
+1. Create a new project and install the following packages:
+npm init -y
+npm install express --save
+npm install handlebars --save
+npm install morgan --save
+npm install nodemon --save-dev
+
+
+2. Create a new file called app.js and add the following code:
+const express = require('express');
+const router = require('./router');
+
+const app = express();
+app.use(router);
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
+
+
+3. Create a new file called router.js and add the following code:
+const express = require('express');
+const router = express.Router();
+const morgan = require('morgan');
+
+router.use(morgan('dev'));
+
+router.get('/', (req, res) => {
+    res.send('Hello World');
+});
+
+router.use((req, res) => {
+    res.status(404).send('Página não encontrada!');
+});
+
+module.exports = router;
+
+
+`${__dirname}` is a global variable that returns the current directory path. pwd in the terminal.
+
+
+
+
+

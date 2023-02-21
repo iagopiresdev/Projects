@@ -1,0 +1,1 @@
+Router serve para dizer qual funçao do controlador vai ser executada com base na rota acessada.

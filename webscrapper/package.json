@@ -1,0 +1,16 @@
+{
+  "name": "webscrapper",
+  "version": "1.0.0",
+  "description": "Web scapper bot using puppeteer",
+  "main": "scrapperbot.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Iago Santiago",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^19.7.4",
+    "readline-sync": "^1.4.10"
+  }
+}
